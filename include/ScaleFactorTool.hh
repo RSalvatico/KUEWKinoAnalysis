@@ -7,6 +7,7 @@
 #include "ReducedBase_slim.hh"
 
 using std::string;
+enum SleptonFlavor {kSmu, kSel, kSmuSel};
 
 ///////////////////////////////////////////
 ////////// ScaleFactorTool class
@@ -24,6 +25,7 @@ public:
   double GetMETSF(double MET, int updown = 0);
 
   bool DileptonEvent(ReducedBase* base);
+  SleptonFlavor SleptonEvent(ReducedBase* base);
 
 };
 

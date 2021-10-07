@@ -74,6 +74,13 @@ bool SampleTool::FilterDilepton(const Process& proc, int itree){
   return m_SProcDL[m_iYear][proc][FileName(proc, itree)];
 }
 
+SleptonFlavor SampleTool::FilterSleptons(const Process& proc, int itree){
+  if(m_SProcInit[m_iYear].count(proc) == 0)
+    return kSmuSel;
+
+  return m_SProcSlepFlavor[m_iYear][proc][FileName(proc, itree)];
+}
+
 double SampleTool::GetSampleWeight(const Process& proc, int itree){
   if(m_SProcInit[m_iYear].count(proc) == 0)
     return 1.;
@@ -189,7 +196,7 @@ int SampleTool::YearMap(int year){
   return ydef;
 }
 
-void SampleTool::InitSMS(const string& prefix, const string& filename, double weight, bool FS, bool DL){
+void SampleTool::InitSMS(const string& prefix, const string& filename, double weight, bool FS, bool DL, SleptonFlavor kFlavor){
   //TFile file;
   //file.Open(filename.c_str(), "READ"); //
 if(gSystem->AccessPathName(filename.c_str())) return;
@@ -362,8 +369,16 @@ void SampleTool::InitProcMap(){
     //InitSMS("TChipmWW", m_Path+"Summer16_102X_SMS/SMS-TChipmWW_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 1., true);
     //InitSMS("TChipmWW", m_Path+"Summer16_102X_SMS/SMS-TChipmWW_WWTo2LNu_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 1., true, true);
 
-    InitSMS("TSlepSlep", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2.77, true);
-    //InitSMS("TSlepSlep", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_mSlep-500To1300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2.77, true);
+
+    InitSMS("TSlepSlep_tot", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2.77, true); // 2*(sigmaL+sigmaR)/sigmaL = 2.77, that is smuons and selectrons, left- and right-handed                                                                                                                 
+    InitSMS("TSlepSlep_mueL", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2*1., true); // left-handed smuon and selectron only                                                                                                                                            
+    InitSMS("TSlepSlep_mueR", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2*0.35, true); // right-handed smuon and selectron only                                                                                                                                              
+  //In the next four samples, the factor 2 in the weight accounts for the fact that we do not divide by the number of initial MC events containing only one lepton, but both the leptons (assuming smuons and selectrons are generated with equal probability...)                                                                                      
+    InitSMS("TSlepSlep_eL", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2*1., true, false, kSmu); // left-handed selectron only                                                                                                                                                                 
+    InitSMS("TSlepSlep_eR", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2*0.35, true, false, kSmu); // right-handed selectron only                                                                                                                                                              
+    InitSMS("TSlepSlep_muL", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2*1., true, false, kSel); // left-handed smuon only
+    InitSMS("TSlepSlep_muR", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2*0.35, true, false, kSel); // right-handed smuon only  
+
 
     //InitSMS("T2bb", m_Path+"Summer16_102X_SMS/SMS-T2bb_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 1., true);
 
@@ -516,8 +531,16 @@ m_Proc[m_iYear][data_obs] = pair<vector<string>,string>(list, "KUAnalysis");
     InitSMS("TChipmWW", m_Path+"Fall17_102X_SMS/SMS-TChipmWW_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 1., true);
     InitSMS("TChipmWW", m_Path+"Fall17_102X_SMS/SMS-TChipmWW_WWTo2LNu_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 1., true, true);
 
-    InitSMS("TSlepSlep", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2.77, true);
-    //InitSMS("TSlepSlep", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_mSlep-500To1300_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2.77, true);
+    
+    InitSMS("TSlepSlep_tot", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2.77, true); // 2*(sigmaL+sigmaR)/sigmaL = 2.77, that is smuons and selectrons, left- and right-handed                                                                                                                          
+    InitSMS("TSlepSlep_mueL", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2*1., true); // left-handed smuon and selectron only                                                                                                                                                                           
+    InitSMS("TSlepSlep_mueR", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2*0.35, true); // right-handed smuon and selectron only                                                                                                                                                                        
+  //In the next four samples, the factor 2 in the weight accounts for the fact that we do not divide by the number of initial MC events containing only one lepton, but both the leptons (assuming smuons and selectrons are generated with equal probability...)                                                                                      
+    InitSMS("TSlepSlep_eL", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2*1., true, false, kSmu); // left-handed selectron only                                                                                                                                                                          
+    InitSMS("TSlepSlep_eR", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2*0.35, true, false, kSmu); // right-handed selectron only                                                                                                                                                                       
+    InitSMS("TSlepSlep_muL", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2*1., true, false, kSel); // left-handed smuon only
+    
+    InitSMS("TSlepSlep_muR", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2*0.35, true, false, kSel); // right-handed smuon only            
 
     InitSMS("T2bb", m_Path+"Fall17_102X_SMS/SMS-T2bb_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 1., true);
 
@@ -698,8 +721,14 @@ m_Proc[m_iYear][data_obs] = pair<vector<string>,string>(list, "KUAnalysis");
     //InitSMS("TChipmWW", m_Path+"Autumn18_102X_SMS/SMS-TChipmWW_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 1., true);
     //InitSMS("TChipmWW", m_Path+"Autumn18_102X_SMS/SMS-TChipmWW_WWTo2LNu_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 1., true, true);
 
-    InitSMS("TSlepSlep", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2.77, true);
-    //InitSMS("TSlepSlep", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_mSlep-500To1300_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2.77, true);
+    InitSMS("TSlepSlep_tot", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2.77, true); // 2*(sigmaL+sigmaR)/sigmaL = 2.77, that is smuons and selectrons, left- and right-handed                                                                                                                 
+    InitSMS("TSlepSlep_mueL", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2*1., true); // left-handed smuon and selectron only                                                                                                                 
+    InitSMS("TSlepSlep_mueR", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2*0.35, true); // right-handed smuon and selectron only                                                                                                                    
+  //In the next four samples, the factor 2 in the weight accounts for the fact that we do not divide by the number of initial MC events containing only one lepton, but both the leptons (assuming smuons and selectrons are generated with equal probability...)                                                                                      
+    InitSMS("TSlepSlep_eL", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2*1., true, false, kSmu); // left-handed selectron only                                                                                                                                                                 
+    InitSMS("TSlepSlep_eR", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2*0.35, true, false, kSmu); // right-handed selectron only                                                                                                                                                              
+    InitSMS("TSlepSlep_muL", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2*1., true, false, kSel); // left-handed smuon only
+    InitSMS("TSlepSlep_muR", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2*0.35, true, false, kSel); // right-handed smuon only  
 
     //InitSMS("T2bb", m_Path+"Autumn18_102X_SMS/SMS-T2bb_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 1., true);
 
@@ -739,5 +768,6 @@ std::map<Process, bool> SampleTool::m_SProcInit[3]; // checked combined normaliz
 std::map<Process, std::map<string,bool> >   SampleTool::m_SProcFS[3]; // FastSim?
 std::map<Process, std::map<string,bool> >   SampleTool::m_SProcDL[3]; // di-lepton filter (ZToLL or dilepton filter);
 std::map<Process, std::map<string,double> > SampleTool::m_SProcW[3];  // some additional weight to apply
+std::map<Process, std::map<string,SleptonFlavor> >   SampleTool::m_SProcSlepFlavor[3]; // Slepton filter
 
 double SampleTool::m_Lumi[3];

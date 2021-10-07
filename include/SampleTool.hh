@@ -8,6 +8,7 @@
 #include <TChain.h>
 
 #include "Process.hh"
+#include "ScaleFactorTool.hh"
 
 using std::string;
 using std::vector;
@@ -35,6 +36,7 @@ public:
   bool IsFastSim(const Process& proc, int itree);
   bool FilterDilepton(const Process& proc, int itree);
   double GetSampleWeight(const Process& proc, int itree);
+  SleptonFlavor FilterSleptons(const Process& proc, int itree);
   
 private:
   string m_Path;
@@ -42,7 +44,7 @@ private:
 
   int YearMap(int year);
 
-  void InitSMS(const string& prefix, const string& filename, double weight = 1., bool FS = false, bool DL = false);
+  void InitSMS(const string& prefix, const string& filename, double weight = 1., bool FS = false, bool DL = false, SleptonFlavor kFlavor = kSmuSel);
   void InitProcMap();
   static bool m_ProcInit;
   static std::map<Process, pair<vector<string>,string> > m_Proc[3];
@@ -54,7 +56,7 @@ private:
   static std::map<Process, std::map<string,bool> >   m_SProcFS[3]; // FastSim?
   static std::map<Process, std::map<string,bool> >   m_SProcDL[3]; // di-lepton filter (ZToLL or dilepton filter);
   static std::map<Process, std::map<string,double> > m_SProcW[3];  // some additional weight to apply
-  
+  static std::map<Process, std::map<string,SleptonFlavor> >   m_SProcSlepFlavor[3]; // Smuon filter
   
 };
 

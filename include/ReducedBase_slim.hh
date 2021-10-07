@@ -841,6 +841,8 @@ inline void ReducedBase::Init(TTree *tree)
    fChain->SetBranchStatus("MX3a_BoostT",1);
    fChain->SetBranchStatus("MX3b_BoostT",1);
    fChain->SetBranchStatus("PX3_BoostT",1);
+   fChain->SetBranchStatus("genNsusy",1);
+   fChain->SetBranchStatus("genPDGID_susy",1);
  
 }
 

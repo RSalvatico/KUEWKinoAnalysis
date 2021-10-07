@@ -78,3 +78,23 @@ bool ScaleFactorTool::DileptonEvent(ReducedBase* base){
   return false;
 
 }
+
+SleptonFlavor ScaleFactorTool::SleptonEvent(ReducedBase* base){
+
+  int Nsmu = 0;
+  int Nsel = 0;
+
+  for(int i = 0; i < base->genNsusy; i++){
+    if(fabs(base->genPDGID_susy->at(i)) == 1000013 || fabs(base->genPDGID_susy->at(i)) == 2000013) Nsmu++;
+    if(fabs(base->genPDGID_susy->at(i)) == 1000011 || fabs(base->genPDGID_susy->at(i)) == 2000011) Nsel++;
+  }
+
+  if(Nsmu >= 2)
+    return kSmu;
+
+  if(Nsel >= 2)
+    return kSel;
+
+  return kSmuSel;
+
+}

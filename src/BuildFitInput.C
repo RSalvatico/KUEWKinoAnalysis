@@ -275,6 +275,7 @@ int main(int argc, char* argv[]) {
       bool is_FastSim = ST.IsFastSim(proc, f);
       bool do_FilterDilepton = ST.FilterDilepton(proc, f);
       double sample_weight = ST.GetSampleWeight(proc, f);
+      SleptonFlavor do_FilterSleptons = ST.FilterSleptons(proc, f);
 
       if(is_signal)
 	sample_weight *= SF.GetX20BRSF(file, tree);
@@ -285,6 +286,10 @@ int main(int argc, char* argv[]) {
 	cout << "      Is FastSim" << endl;
       if(do_FilterDilepton)
 	cout << "      Filter Out dilepton events" << endl;
+      if(do_FilterSleptons == kSmu)
+        cout << "      Filter out events containing smuons" << endl;
+      if(do_FilterSleptons == kSel)
+        cout << "      Filter out events containing selectrons" << endl;
     
       TChain* chain = ST.Tree(proc, f);
 
@@ -307,6 +312,12 @@ int main(int argc, char* argv[]) {
 	if(do_FilterDilepton)
 	  if(SF.DileptonEvent(base))
 	    continue;
+
+        if(do_FilterSleptons == kSmu && SF.SleptonEvent(base) == kSmu)
+          continue;
+
+        if(do_FilterSleptons == kSel && SF.SleptonEvent(base) == kSel)
+          continue;
 	
 	// apply trigger to data and FullSim events
 	if(!base->METORtrigger && !is_FastSim)

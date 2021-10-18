@@ -245,7 +245,8 @@ void SampleTool::InitProcMap(){
 
   m_Lumi[0] = 35.921875595;    // 2016 lumi
   m_Lumi[1] = 41.529152060;    // 2017 lumi
-  m_Lumi[2] = 59.740565;       // 2018 lumi
+  //m_Lumi[2] = 59.740565;       // 2018 lumi
+  m_Lumi[2] = 21.077794578;       // 2018 preHEM lumi
 
   // 2018 - 21.077794578, 38.662770624 (pre/post HEM)
 
@@ -464,7 +465,7 @@ m_Proc[m_iYear][data_obs] = pair<vector<string>,string>(list, "KUAnalysis");
     list += m_Path + "Fall17_102X/WWTo2L2Nu_NNPDF31_TuneCP5_13TeV-powheg-pythia8_Fall17_102X.root";
     list += m_Path + "Fall17_102X/WWTo4Q_NNPDF31_TuneCP5_13TeV-powheg-pythia8_Fall17_102X.root";
     list += m_Path + "Fall17_102X/WWToLNuQQ_NNPDF31_TuneCP5_13TeV-powheg-pythia8_Fall17_102X.root";
-    list += m_Path + "Fall17_102X/WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Autumn18_102X.root";
+    list += m_Path + "Fall17_102X/WZTo1L1Nu2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_102X.root";
     list += m_Path + "Fall17_102X/WZTo1L3Nu_13TeV_amcatnloFXFX_madspin_pythia8_v2_Fall17_102X.root";
     list += m_Path + "Fall17_102X/WZTo2L2Q_13TeV_amcatnloFXFX_madspin_pythia8_Fall17_102X.root";
     list += m_Path + "Fall17_102X/WZTo3LNu_TuneCP5_13TeV-amcatnloFXFX-pythia8_Fall17_102X.root";
@@ -638,18 +639,18 @@ m_Proc[m_iYear][data_obs] = pair<vector<string>,string>(list, "KUAnalysis");
   
     Process ZDY("ZDY", kBkg);
     list.clear();
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-4to50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-4to50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-4to50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-4to50_HT-600toInf_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
-    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-4to50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-4to50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-4to50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-4to50_HT-600toInf_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-100to200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-200to400_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-400to600_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-600to800_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-70to100_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
+    list += m_Path + "Autumn18_102X/DYJetsToLL_M-50_HT-800to1200_TuneCP5_PSweights_13TeV-madgraphMLM-pythia8_Autumn18_102X.root";
     list += m_Path + "Autumn18_102X/ZJetsToNuNu_HT-100To200_13TeV-madgraph_Autumn18_102X.root";
     list += m_Path + "Autumn18_102X/ZJetsToNuNu_HT-1200To2500_13TeV-madgraph_Autumn18_102X.root";
     list += m_Path + "Autumn18_102X/ZJetsToNuNu_HT-200To400_13TeV-madgraph_Autumn18_102X.root";

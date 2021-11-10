@@ -1690,16 +1690,16 @@ CategoryList CategoryTool::GetCategories_2L(bool maskSR) const {
    H_2L_2jS.push_back(GetHadronicRegion(2, 6)); // ge2j0b
   // H_2L_2jS.push_back(GetHadronicRegion(2, 8)); // ge2j1b
   // H_2L_2jS.push_back(GetHadronicRegion(2, 9)); // ge2jge2b
-   H_2L_2jS.push_back(GetHadronicRegion(2, 7)); // ge2jge1b
+   H_2L_2jS.push_back(GetHadronicRegion(2, 7)); // ge2jge1b //uncomment
  
- // H_2L_2jS.push_back(GetHadronicRegion(2, 2)); // 2j0b 
- // H_2L_2jS.push_back(GetHadronicRegion(2, 3)); // 2jge1b
+   //H_2L_2jS.push_back(GetHadronicRegion(2, 2)); // 2j0b //comment
+   //H_2L_2jS.push_back(GetHadronicRegion(2, 3)); // 2jge1b //comment
   
   vector<Hadronic> H_2L_2jS_bkg;
   // H_2L_2jS_bkg.push_back(GetHadronicRegion(2, 6)); // ge2j0b
   // H_2L_2jS_bkg.push_back(GetHadronicRegion(2, 7)); // ge2jge1b
-  //H_2L_2jS_bkg.push_back(GetHadronicRegion(2, 1)); // 2j
-  H_2L_2jS_bkg.push_back(GetHadronicRegion(2, 0));//ge2j inclusive
+  //H_2L_2jS_bkg.push_back(GetHadronicRegion(2, 1)); // 2j //comment
+  H_2L_2jS_bkg.push_back(GetHadronicRegion(2, 0));//ge2j inclusive //uncomment
 
   Cats_2L_2jS_gold_OS = Cats_2L_2jS_gold_OS.CreateFitBinRegions(GetFitBin(2, 2, maskSR));
   Cats_2L_2jS_gold_OS = Cats_2L_2jS_gold_OS.CreateLeptonIDRegions(IDs_gold);
@@ -1725,7 +1725,7 @@ CategoryList CategoryTool::GetCategories_2L(bool maskSR) const {
   Cats_2L += Cats_2L_2jS_slvrbron;
  
   ///////////////////////////////////////////////
-/* Merging 2L ge3J into 2J 
+  /*//Merging 2L ge3J into 2J  //comment until next /////
   cout << "Building 2L ge3j 0/ge1b object regions" << endl;
   CategoryList Cats_2L_3jS_gold_OS = Cats_2Lnoflavor_OS;
   CategoryList Cats_2L_3jS_gold_SS = Cats_2Lnoflavor_SS;
@@ -1760,7 +1760,7 @@ CategoryList CategoryTool::GetCategories_2L(bool maskSR) const {
   Cats_2L += Cats_2L_3jS_gold_OS;
   Cats_2L += Cats_2L_3jS_gold_SS;
   Cats_2L += Cats_2L_3jS_slvrbron;
-*/
+  */
   ///////////////////////////////////////////////
  
   return Cats_2L;

@@ -381,7 +381,7 @@ void SampleTool::InitProcMap(){
     InitSMS("TSlepSlep_muL", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2*1., true, false, kSel); // left-handed smuon only
     InitSMS("TSlepSlep_muR", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2*0.35, true, false, kSel); // right-handed smuon only  
 
-    InitSMS("TSlepSlep_tot", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_ext_Summer16_102X.root", 2.77, true); //Additional sample
+    //InitSMS("TSlepSlep_tot", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_ext_Summer16_102X.root", 2.77, true); //Additional sample
     //InitSMS("TSlepSlep", m_Path+"Summer16_102X_SMS/SMS-TSlepSlep_mSlep-500To1300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8_Summer16_102X.root", 2.77, true);
 
 
@@ -549,7 +549,7 @@ m_Proc[m_iYear][data_obs] = pair<vector<string>,string>(list, "KUAnalysis");
     
     InitSMS("TSlepSlep_muR", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2*0.35, true, false, kSel); // right-handed smuon only            
 
-    InitSMS("TSlepSlep_tot", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_ext_Fall17_102X.root", 2.77, true); //Additional sample
+    //InitSMS("TSlepSlep_tot", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_ext_Fall17_102X.root", 2.77, true); //Additional sample
     //InitSMS("TSlepSlep", m_Path+"Fall17_102X_SMS/SMS-TSlepSlep_mSlep-500To1300_TuneCP2_13TeV-madgraphMLM-pythia8_Fall17_102X.root", 2.77, true);
 
 
@@ -748,7 +748,7 @@ m_Proc[m_iYear][data_obs] = pair<vector<string>,string>(list, "KUAnalysis");
     InitSMS("TSlepSlep_muL", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2*1., true, false, kSel); // left-handed smuon only
     InitSMS("TSlepSlep_muR", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2*0.35, true, false, kSel); // right-handed smuon only  
 
-    InitSMS("TSlepSlep_tot", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_ext_Autumn18_102X.root", 2.77, true); //Additional sample
+    //InitSMS("TSlepSlep_tot", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_TuneCP2_13TeV-madgraphMLM-pythia8_ext_Autumn18_102X.root", 2.77, true); //Additional sample
     //InitSMS("TSlepSlep", m_Path+"Autumn18_102X_SMS/SMS-TSlepSlep_mSlep-500To1300_TuneCP2_13TeV-madgraphMLM-pythia8_Autumn18_102X.root", 2.77, true);
 
 
